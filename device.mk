@@ -15,8 +15,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/non_ab_device.mk)
 
 # Overlays
 DEVICE_PACKAGE_OVERLAYS += \
-    $(LOCAL_PATH)/overlay \
-    $(LOCAL_PATH)/overlay-miku
+    $(LOCAL_PATH)/overlay
 
 PRODUCT_ENFORCE_RRO_TARGETS := *
 PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
@@ -25,9 +24,7 @@ PRODUCT_ENFORCE_RRO_EXCLUDED_OVERLAYS += \
 # Soong namespaces
 PRODUCT_SOONG_NAMESPACES += \
     $(LOCAL_PATH) \
-    vendor/qcom/opensource/usb/etc \
-    hardware/google/interfaces \
-    hardware/google/pixel
+    vendor/qcom/opensource/usb/etc
 
 # AID/fs configs
 PRODUCT_PACKAGES += \
@@ -85,8 +82,7 @@ PRODUCT_PACKAGES += \
     audio.bluetooth.default
 
 # Boot animation
-TARGET_SCREEN_HEIGHT := 2160
-TARGET_SCREEN_WIDTH := 1080
+TARGET_BOOT_ANIMATION_RES := 1080
 
 # Camera
 PRODUCT_PACKAGES += \
@@ -238,7 +234,6 @@ PRODUCT_PACKAGES += \
     init.qcom.early_boot.sh \
     init.qcom.post_boot.sh \
     init.qti.dcvs.sh \
-    init.qcom.power.rc \
     init.qcom.rc \
     init.qcom.sh \
     init.qcom.usb.rc \
@@ -268,10 +263,6 @@ PRODUCT_PACKAGES += \
 # Lights
 PRODUCT_PACKAGES += \
     android.hardware.lights-service.wayne
-
-# Low power Whitelist
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/others/qti_whitelist.xml:system/etc/sysconfig/qti_whitelist.xml
 
 # Media
 PRODUCT_PACKAGES += \
@@ -355,16 +346,19 @@ PRODUCT_COPY_FILES += \
 
 # Perf
 PRODUCT_PACKAGES += \
-    libqti-perfd-client \
     vendor.qti.hardware.perf@2.2.vendor
+
+# Platform
+TARGET_BOARD_PLATFORM := sdm660
+TARGET_KERNEL_VERSION := 4.19
 
 # Power
 PRODUCT_PACKAGES += \
-    android.hardware.power-service.wayne-libperfmgr \
+    android.hardware.power-service \
     libpower.vendor
 
 PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/power-libperfmgr/etc/powerhint.json:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.json
+    $(LOCAL_PATH)/configs/power/powerhint.xml:$(TARGET_COPY_OUT_VENDOR)/etc/powerhint.xml
 
 # Protobuf
 PRODUCT_PACKAGES += \
@@ -396,22 +390,7 @@ PRODUCT_PACKAGES += \
     librmnetctl \
     libprotobuf-cpp-full \
     ims-ext-common \
-    ims_ext_common.xml \
-    qti-telephony-hidl-wrapper \
-    qti_telephony_hidl_wrapper.xml \
-    qti-telephony-utils \
-    qti_telephony_utils.xml \
-    telephony-ext
-
-PRODUCT_BOOT_JARS += \
-    telephony-ext
-
-# Thermal
-PRODUCT_PACKAGES += \
-    android.hardware.thermal@2.0-service.qti
-
-PRODUCT_COPY_FILES += \
-    $(LOCAL_PATH)/configs/thermal/thermal-engine.conf:$(TARGET_COPY_OUT_VENDOR)/etc/thermal-engine.conf
+    ims_ext_common.xml
 
 # Seccomp policy
 PRODUCT_COPY_FILES += \
