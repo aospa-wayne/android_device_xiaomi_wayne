@@ -5,6 +5,9 @@
 # SPDX-License-Identifier: Apache-2.0
 #
 
+# Building Chromium without gapps
+TARGET_WITH_PREBUILT_CHROMIUM := true
+
 # Maintaier
 MIKU_MASTER := xiaoleGun
 
