@@ -130,7 +130,8 @@ PRODUCT_PACKAGES += \
     libgralloc.qti \
     libtinyxml \
     libqdMetaData \
-    libqdMetaData.system 
+    libqdMetaData.system \
+    libqdMetaData.system_ext
 
 PRODUCT_PACKAGES += \
     android.frameworks.displayservice@1.0_32 \
