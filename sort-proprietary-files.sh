@@ -20,14 +20,13 @@ fi
 TMPDIR=$(mktemp -d)
 
 # Ignore the line indicating the source of blobs.
-# If the line does not contain "extracted from" it
+# If the line does not contain "package version" it
 # is assumed that the information is not provided.
-if [[ $(head -n 1 ${file}) == *"extracted from"* ]]; then
-    tail -n +2 ${file} > ${TMPDIR}/files.txt
-    echo $(head -n 1 ${file}) >> ${TMPDIR}/sorted_files.txt
+grep -v "package version" ${file} > ${TMPDIR}/files.txt
+grep "package version" ${file} > ${TMPDIR}/extracted_lines.txt
+if [[ -s ${TMPDIR}/extracted_lines.txt ]]; then
+    cat ${TMPDIR}/extracted_lines.txt >> ${TMPDIR}/sorted_files.txt
     echo "" >> ${TMPDIR}/sorted_files.txt
-else
-    cp ${file} ${TMPDIR}/files.txt
 fi
 
 # Displays the current operating system name
