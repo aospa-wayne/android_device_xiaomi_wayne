@@ -7,6 +7,7 @@ cc_binary {
     overrides: [
         "android.hardware.light@2.0-service",
         "android.hardware.lights-service.qti",
+        "vendor.qti.hardware.lights.service",
     ],
     shared_libs: [
         "libbase",
