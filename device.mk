@@ -378,6 +378,10 @@ PRODUCT_PACKAGES += \
     libsqlite.vendor \
     libssl.vendor
 
+# QTI
+TARGET_COMMON_QTI_COMPONENTS := \
+    display
+
 # RIL
 PRODUCT_PACKAGES += \
     android.hardware.radio@1.6.vendor \
